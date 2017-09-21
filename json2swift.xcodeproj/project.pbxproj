@@ -52,8 +52,8 @@
 		0C22D1AD1F74165500CAA78A = {
 			isa = PBXGroup;
 			children = (
-				0C22D1B81F74165500CAA78A /* d2swift */,
-				0C22D1C51F74166C00CAA78A /* d2swift_tests */,
+				0C22D1B81F74165500CAA78A /* json2swift */,
+				0C22D1C51F74166C00CAA78A /* json2swift_tests */,
 				0C22D1B71F74165500CAA78A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,20 +67,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0C22D1B81F74165500CAA78A /* d2swift */ = {
+		0C22D1B81F74165500CAA78A /* json2swift */ = {
 			isa = PBXGroup;
 			children = (
 				0C22D1B91F74165500CAA78A /* main.swift */,
 			);
+			name = json2swift;
 			path = d2swift;
 			sourceTree = "<group>";
 		};
-		0C22D1C51F74166C00CAA78A /* d2swift_tests */ = {
+		0C22D1C51F74166C00CAA78A /* json2swift_tests */ = {
 			isa = PBXGroup;
 			children = (
 				0C22D1C61F74166C00CAA78A /* d2swift_tests.swift */,
 				0C22D1C81F74166C00CAA78A /* Info.plist */,
 			);
+			name = json2swift_tests;
 			path = d2swift_tests;
 			sourceTree = "<group>";
 		};
