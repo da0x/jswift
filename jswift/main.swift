@@ -25,15 +25,23 @@ func tab(_ level:Int) -> String {
     return o
 }
 
-func class_name(_ key:String) -> String {
-    return symbol(key.capitalized + "Type")
-}
-
 func symbol(_ key:String) -> String {
     return key
         .replacingOccurrences(of: " ", with: "")
         .replacingOccurrences(of: "-", with: "_")
 }
+
+func class_name(_ key:String) -> String {
+    return symbol(key.capitalized + "Type")
+}
+
+func class_name(_ url:URL) -> String {
+    return url.pathComponents.last?
+        .replacingOccurrences(of: ".json", with: "")
+        .replacingOccurrences(of: "-", with: "_")
+        .components(separatedBy: "?").first ?? "Generic"
+}
+
 func var_name(_ key:String) -> String {
     var string = ""
     guard key != key.uppercased() else {
@@ -187,9 +195,10 @@ func process(_ name:String, _ data:Data){
 
 func get(urlString:String){
     let url = URL(fileURLWithPath: urlString)
-    let name = url.pathComponents.last?.replacingOccurrences(of: ".", with: "").components(separatedBy: "?").first
+    let name = class_name(url)
+    
     if let data = try? Data(contentsOf: url){
-        process(name!, data)
+        process(name, data)
         done.signal()
         return
     }
@@ -203,8 +212,8 @@ func get(urlString:String){
                 return
             }
             if let data = data {
-                let name = url.pathComponents.last?.replacingOccurrences(of: ".", with: "").components(separatedBy: "?").first
-                process(name!,data)
+                let name = class_name(url)
+                process(name,data)
                 done.signal()
             }
         }).resume()
