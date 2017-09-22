@@ -9,7 +9,7 @@
 import Foundation
 
 func app() -> String {
-    return "json2swift"
+    return "jswift"
 }
 
 func end() -> String {
@@ -26,13 +26,18 @@ func tab(_ level:Int) -> String {
 }
 
 func class_name(_ key:String) -> String {
-    return key.capitalized + "Type"
+    return symbol(key.capitalized + "Type")
 }
 
+func symbol(_ key:String) -> String {
+    return key
+        .replacingOccurrences(of: " ", with: "")
+        .replacingOccurrences(of: "-", with: "_")
+}
 func var_name(_ key:String) -> String {
     var string = ""
     guard key != key.uppercased() else {
-        return key.lowercased().replacingOccurrences(of: " ", with: "")
+        return symbol(key.lowercased())
     }
     for (i, value) in key.characters.enumerated() {
         if i == 0 {
@@ -43,7 +48,7 @@ func var_name(_ key:String) -> String {
         }
     }
     
-    return string.replacingOccurrences(of: " ", with: "")
+    return symbol(string)
 }
 
 func declare(_ key:String,_ value:Any,_ i: Int) -> String {
