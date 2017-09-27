@@ -153,6 +153,8 @@ func parse(key:String,_ value: Any,_ i:Int) -> String {
     }
     
     if let value = value as? [Any] {
+        guard value.count > 0 else { return "" }
+        
         o += parse(key: key, value.first ?? [], i+1)
     }
     
