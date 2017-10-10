@@ -43,6 +43,7 @@ func symbol(_ key:String) -> String {
     return key
         .replacingOccurrences(of: " ", with: "")
         .replacingOccurrences(of: "-", with: "_")
+        .replacingOccurrences(of: ".", with: "")
 }
 
 func class_name(_ key:String) -> String {
@@ -53,6 +54,7 @@ func class_name(_ url:URL) -> String {
     return url.pathComponents.last?
         .replacingOccurrences(of: ".json", with: "")
         .replacingOccurrences(of: "-", with: "_")
+        .replacingOccurrences(of: ".", with: "")
         .components(separatedBy: "?").first ?? "Generic"
 }
 
@@ -229,14 +231,16 @@ func process(_ name:String, _ data:Data){
     
     var parse_context : context?
     
-    if let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
-        parse_context = context(current_type: name, level: 0, value: jsonData as Any)
-    } else if let jsonArray = try? JSONSerialization.jsonObject(with: data, options: []) as? [Any] {
-        parse_context = context(current_type: name, level: -1, value: jsonArray as Any)
+    if let data = try? JSONSerialization.jsonObject(with: data, options: []){
+        
+        if let jsonData = data as? [String : Any] {
+            parse_context = context(current_type: name, level: 0, value: jsonData as Any)
+        } else if let jsonArray = data as? [Any] {
+            parse_context = context(current_type: name, level: -1, value: jsonArray as Any)
+        }
+        
+        print(parse(parse_context!))
     }
-    
-    
-    print(parse(parse_context!))
 }
 
 func get(urlString:String){

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C37DA231F755EA000D6AE3D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37DA221F755EA000D6AE3D /* main.swift */; };
+		0C9B918E1F8BB7B30028D422 /* jswift in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C37DA1F1F755EA000D6AE3D /* jswift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -17,6 +18,16 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		0C9B918D1F8BB7940028D422 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/bin;
+			dstSubfolderSpec = 0;
+			files = (
+				0C9B918E1F8BB7B30028D422 /* jswift in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -72,6 +83,7 @@
 				0C37DA1B1F755EA000D6AE3D /* Sources */,
 				0C37DA1C1F755EA000D6AE3D /* Frameworks */,
 				0C37DA1D1F755EA000D6AE3D /* CopyFiles */,
+				0C9B918D1F8BB7940028D422 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -255,6 +267,7 @@
 				0C37DA281F755EA000D6AE3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
