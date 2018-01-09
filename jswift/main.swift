@@ -63,7 +63,7 @@ func var_name(_ key:String) -> String {
     guard key != key.uppercased() else {
         return symbol(key.lowercased())
     }
-    for (i, value) in key.characters.enumerated() {
+    for (i, value) in key.enumerated() {
         if i == 0 {
             string += String(value).lowercased()
         }
@@ -228,15 +228,23 @@ func process(_ name:String, _ data:Data){
     print("    init(_ value: [String:Any])")
     print("    func map() -> [String:Any]")
     print("}")
-    
+
     var parse_context : context?
     
     if let data = try? JSONSerialization.jsonObject(with: data, options: []){
         
         if let jsonData = data as? [String : Any] {
-            parse_context = context(current_type: name, level: 0, value: jsonData as Any)
+            parse_context = context(
+                current_type: name,
+                level: 0,
+                value: jsonData as Any
+            )
         } else if let jsonArray = data as? [Any] {
-            parse_context = context(current_type: name, level: -1, value: jsonArray as Any)
+            parse_context = context(
+                current_type: name,
+                level: -1,
+                value: jsonArray as Any
+            )
         }
         
         print(parse(parse_context!))
@@ -255,7 +263,9 @@ func get(urlString:String){
     
     if let interetURL = URL(string: urlString) {
         let request = URLRequest(url: interetURL)
-        session.dataTask(with: request, completionHandler: { (data, urlResponse, error) in
+        session.dataTask(
+            with: request,
+            completionHandler: { (data, urlResponse, error) in
             if let e = error {
                 print("\(e)")
                 done.signal()
